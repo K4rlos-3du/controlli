@@ -1,6 +1,6 @@
 export default function(){
 
   return(
-    <h1>Bem Vindo Controlli</h1>
+    <h1>Tela de cadastro</h1>
   )
 }
