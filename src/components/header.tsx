@@ -1,17 +1,14 @@
-"use client";
+'use client';
 
+import { ThemeToggle } from '@/components/themeToggle';
+import { LogOut, Package } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export function Header() {
-
   const pathname = usePathname();
-  
+
   const headerItens = [
-    {
-      title: 'Inicio',
-      href: '/',
-    },
     {
       title: 'Produtos',
       href: '/products',
@@ -23,27 +20,49 @@ export function Header() {
   ];
 
   return (
-    <header className="w-full bg-card h-16 shrink-0 border-b px-10 flex items-center justify-between">
+    <header className="w-full border-b bg-card">
+      <div className="h-16 max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="p-1.5 rounded-md bg-primary/10">
+            <Package size={22} />
+          </div>
 
-      <div className='w-full flex justify-between' >
-      
-        <h1>Controlli</h1>
+          <span className="text-xl font-semibold text-primary">Controlli</span>
+        </Link>
 
-        <nav>
-          {headerItens.map((menu) => {
-          const isActive = pathname === menu.href;
+        <nav className="flex items-center gap-2 md:gap-6 text-sm font-medium">
+         {headerItens.map((menu) => {
+          const isActive =
+            pathname === menu.href ||
+            (pathname.startsWith(menu.href + "/") && !pathname.startsWith(menu.href + "/new"));
 
-          return (
-            <Link href={menu.href} className=""
-                "flex items-center gap-3 px-3 py-2 text-sm rounded-md font-medium transition-colors duration-300",
-                isActive ? "bg-brand-primary text-white" : "hover:bg-gray-600"
+            return (
+              <Link
+                key={menu.href}
+                href={menu.href}
+                className={`
+                  transition-colors
+                  ${
+                    isActive
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-primary'
+                  }
+                `}
               >
-              {menu.title}
-            </Link>
-          )
+                {menu.title}
+              </Link>
+            );
           })}
-        </nav>
 
+          <ThemeToggle />
+
+          <Link
+            className="p-2 rounded-md hover:bg-out-soft transition"
+            href="/"
+          >
+            <LogOut className="text-out" size={18} />
+          </Link>
+        </nav>
       </div>
     </header>
   );
