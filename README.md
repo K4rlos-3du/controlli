@@ -215,4 +215,4 @@ http://localhost:3000
 
 ## 📌 Observação
 
-Este projeto foi desenvolvido com foco **educacional**, demonstrando boas práticas de:
+Este projeto foi desenvolvido com foco **educacional.**

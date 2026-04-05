@@ -23,7 +23,7 @@ export function Header() {
     <header className="w-full border-b bg-card">
       <div className="h-16 max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="p-1.5 rounded-md bg-primary/10">
+          <div className="p-1.5 rounded-md bg-primary/10 text-primary">
             <Package size={22} />
           </div>
 
@@ -31,10 +31,11 @@ export function Header() {
         </Link>
 
         <nav className="flex items-center gap-2 md:gap-6 text-sm font-medium">
-         {headerItens.map((menu) => {
-          const isActive =
-            pathname === menu.href ||
-            (pathname.startsWith(menu.href + "/") && !pathname.startsWith(menu.href + "/new"));
+          {headerItens.map((menu) => {
+            const isActive =
+              pathname === menu.href ||
+              (pathname.startsWith(menu.href + '/') &&
+                !pathname.startsWith(menu.href + '/new'));
 
             return (
               <Link
